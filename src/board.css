@@ -1,0 +1,31 @@
+.board-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+}
+
+.grid {
+  display: grid;
+  gap: 5px;
+}
+
+.cell {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  color: #0ac2ffaa;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid #0e7eaa;
+  background-color: #ffffff;
+  transition: background-color 0.2s;
+  border-radius: 8px;
+}
+
+.cell:hover {
+  background-color: #cbe9f8;
+}

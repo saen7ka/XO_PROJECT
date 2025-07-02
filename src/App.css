@@ -1,0 +1,210 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+body.dark-mode {
+  background-color: #121212;
+}
+
+body {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.border {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background: white;
+  box-shadow: 0 0 20px #64acffaa;
+  border-radius: 10px;
+  padding-bottom: 20px;
+  transition: background-color 0.3s ease;
+}
+
+body.dark-mode .border {
+  background: #1e1e1e;
+}
+
+.logo {
+  height: 6em;
+  padding: 30px 20px 0px 20px;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+h1 {
+  color: #8cd2f3;
+  padding: 0px 20px;
+}
+
+body.dark-mode h1 {
+  color: #6fc9d9;
+}
+
+h2 {
+  color: #34b0c3;
+}
+
+body.dark-mode h2 {
+  color: #50c0e1;
+}
+
+h3 {
+  color: #91eed5;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#start,
+#history {
+  color: #1883a9;
+  background-color: #8cd2f3;
+  margin: 0px 20px 30px 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#start:hover,
+#history:hover {
+  background-color: #7dcfdc;
+  filter: drop-shadow(0 0 2em #8f94eeaa);
+}
+
+#reset {
+  color: #1883a9;
+  background-color: #8cd2f3;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#reset:hover {
+  background-color: #10c8d5;
+  filter: drop-shadow(0 0 2em #8f94eeaa);
+}
+
+.darkmode-toggle {
+  background-color: transparent;
+  color: #1883a9;
+  border: 2px solid #8cd2f3;
+  padding: 6px 14px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.darkmode-toggle:hover {
+  background-color: #8cd2f3;
+  color: #ffffff;
+}
+
+.board-size-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0px 20px 20px 20px;
+  gap: 0.75rem;
+}
+
+.board-size-form label {
+  font-size: 16px;
+  font-weight: 500;
+  color: #3aa5d6;
+}
+
+.board-size-control {
+  display: flex;
+  gap: 5px;
+}
+
+.board-size-control button {
+  padding: 0px 10px;
+  font-size: 20px;
+  background-color: #8cd2f3;
+  color: #1883a9;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 30px;
+  width: 60px;
+}
+
+.board-size-control button:hover {
+  background-color: #7dcfdc;
+  filter: drop-shadow(0 0 2em #8f94eeaa);
+}
+
+.board-size-display {
+  font-size: 20px;
+  background-color: #8cd2f3;
+  color: #1883a9;
+  border: none;
+  border-radius: 8px;
+  height: 30px;
+  width: 60px;
+  text-align: center;
+  appearance: textfield;
+}
+
+.board-size-display::-webkit-outer-spin-button,
+.board-size-display::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.choice {
+  display: flex;
+  gap: 10px;
+}
+
+.choice button {
+  color: #1883a9;
+  background-color: #8cd2f3;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.choice button:hover {
+  background-color: #10c8d5;
+  filter: drop-shadow(0 0 2em #8f94eeaa);
+}
+
+.history-list {
+  margin-top: 20px;
+}
+
+.history-list ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.history-list li {
+  margin-bottom: 12px;
+  background-color: #ecfeff;
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 5px solid #14b8a6;
+  text-align: left;
+}
+
+body.dark-mode .history-list li {
+  background-color: #262f33;
+  color: #d2f7ff;
+  border-left-color: #22d3ee;
+}
