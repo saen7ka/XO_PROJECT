@@ -29,10 +29,12 @@ function App() {
       alert("⚠️The table size must not be less than 3‼️");
       return;
     }
+
     if (size >= 20) {
       alert("⚠️The table size must be less than 20‼️");
       return;
     }
+    
     setBoard(Array(size * size).fill(null));
     setIsXTurn(true);
     setGameStarted(true);
