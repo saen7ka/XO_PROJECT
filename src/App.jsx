@@ -29,8 +29,9 @@ function App() {
       alert("⚠️The table size must not be less than 3‼️");
       return;
     }
-    if (size > 25) {
+    if (size > 20) {
       alert("⚠️Creating a table that is too large can be difficult to play‼️");
+      return;
     }
     setBoard(Array(size * size).fill(null));
     setIsXTurn(true);
@@ -206,7 +207,7 @@ function App() {
                 value={boardSize}
                 onChange={(e) => setBoardSize(Number(e.target.value))}
                 min="3"
-                max="100"
+                max="19"
               />
               <button onClick={() => setBoardSize(prev => prev + 1)}>➕</button>
             </div>
