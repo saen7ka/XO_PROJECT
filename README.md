@@ -53,13 +53,18 @@ npm run dev
 
 ### 3. เริ่มต้น Backend Server
 
+ติดตั้ง mongodb https://www.mongodb.com/try/download/community 
+Add new connection 
+แก้ไข URL ให้เป็นตามนี้ mongodb://localhost:27017/xo-game 
+จากนั้นกด Save & Connect
+
 ```bash
 cd src
 npm install
 node server.js
 ```
 
-> ตรวจสอบว่า MongoDB เปิดใช้งานอยู่ที่ `mongodb://localhost:27017/xo_game`
+ตรวจสอบว่า MongoDB เปิดใช้งานอยู่ที่ `mongodb://localhost:27017/xo-game`
 
 ---
 

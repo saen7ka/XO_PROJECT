@@ -29,8 +29,9 @@ function App() {
       alert("⚠️The table size must not be less than 3‼️");
       return;
     }
-    if (size > 25) {
-      alert("⚠️Creating a table that is too large can be difficult to play‼️");
+    if (size >= 20) {
+      alert("⚠️The table size must be less than 20‼️");
+      return;
     }
     setBoard(Array(size * size).fill(null));
     setIsXTurn(true);
@@ -38,7 +39,8 @@ function App() {
     setShowBoardSizeInput(false);
     setMoves([]);
     setWinner(null);
-    setShowHistory(false);0
+    setShowHistory(false);
+    0;
   };
 
   const checkWinner = (board, size) => {
@@ -51,7 +53,12 @@ function App() {
       for (let c = 0; c < size; c++) {
         const symbol = get(r, c);
         if (!symbol) continue;
-        const directions = [[0, 1], [1, 0], [1, 1], [1, -1]];
+        const directions = [
+          [0, 1],
+          [1, 0],
+          [1, 1],
+          [1, -1],
+        ];
         for (const [dr, dc] of directions) {
           let count = 1;
           for (let i = 1; i < winLength; i++) {
@@ -62,7 +69,7 @@ function App() {
         }
       }
     }
-    if (board.every(cell => cell !== null)) return "Draw";
+    if (board.every((cell) => cell !== null)) return "Draw";
     return null;
   };
 
@@ -72,7 +79,10 @@ function App() {
     const currentPlayer = isXTurn ? "X" : "O";
     const newBoard = [...board];
     newBoard[index] = currentPlayer;
-    const newMoves = [...moves, { turn: moves.length + 1, player: currentPlayer, index }];
+    const newMoves = [
+      ...moves,
+      { turn: moves.length + 1, player: currentPlayer, index },
+    ];
     setBoard(newBoard);
     setMoves(newMoves);
     const result = checkWinner(newBoard, size);
@@ -90,12 +100,16 @@ function App() {
 
   const BotMove = (currentBoard, currentMoves) => {
     const size = parseInt(boardSize);
-    const emptyIndices = currentBoard.map((v, i) => v === null ? i : null).filter(v => v !== null);
+    const emptyIndices = currentBoard
+      .map((v, i) => (v === null ? i : null))
+      .filter((v) => v !== null);
     const winIndex = findCriticalMove(currentBoard, size, "O");
     if (winIndex !== null) return botPlay(winIndex, currentBoard, currentMoves);
     const blockIndex = findCriticalMove(currentBoard, size, "X");
-    if (blockIndex !== null) return botPlay(blockIndex, currentBoard, currentMoves);
-    const botIndex = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+    if (blockIndex !== null)
+      return botPlay(blockIndex, currentBoard, currentMoves);
+    const botIndex =
+      emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
     return botPlay(botIndex, currentBoard, currentMoves);
   };
 
@@ -103,7 +117,10 @@ function App() {
     const size = parseInt(boardSize);
     const newBoard = [...boardNow];
     newBoard[index] = "O";
-    const newMoves = [...movesNow, { turn: movesNow.length + 1, player: "O", index }];
+    const newMoves = [
+      ...movesNow,
+      { turn: movesNow.length + 1, player: "O", index },
+    ];
     setBoard(newBoard);
     setMoves(newMoves);
     const result = checkWinner(newBoard, size);
@@ -118,14 +135,20 @@ function App() {
 
   const findCriticalMove = (board, size, player) => {
     const winLength = size;
-    const directions = [[0, 1], [1, 0], [1, 1], [1, -1]];
+    const directions = [
+      [0, 1],
+      [1, 0],
+      [1, 1],
+      [1, -1],
+    ];
     for (let r = 0; r < size; r++) {
       for (let c = 0; c < size; c++) {
         for (const [dr, dc] of directions) {
           let count = 0;
           let empty = null;
           for (let k = 0; k < winLength; k++) {
-            const nr = r + dr * k, nc = c + dc * k;
+            const nr = r + dr * k,
+              nc = c + dc * k;
             if (nr < 0 || nc < 0 || nr >= size || nc >= size) break;
             const idx = nr * size + nc;
             const val = board[idx];
@@ -180,18 +203,27 @@ function App() {
 
   return (
     <div className="border">
-      <div><img src={xoLogo} className="logo" alt="xo logo" /></div>
+      <div>
+        <img src={xoLogo} className="logo" alt="xo logo" />
+      </div>
       <h1>XO GAME</h1>
 
-      <button className="darkmode-toggle" onClick={() => setIsDarkMode(!isDarkMode)}>
+      <button
+        className="darkmode-toggle"
+        onClick={() => setIsDarkMode(!isDarkMode)}
+      >
         {isDarkMode ? "🌙 Dark Mode On" : "☀️ Light Mode"}
       </button>
 
       <div>
         {!showBoardSizeInput && !gameStarted && (
           <>
-            <button id="start" onClick={StartClick}>🕹️Start</button>
-            <button id="history" onClick={fetchGameHistory}>🕓History</button>
+            <button id="start" onClick={StartClick}>
+              🕹️Start
+            </button>
+            <button id="history" onClick={fetchGameHistory}>
+              🕓History
+            </button>
           </>
         )}
 
@@ -199,56 +231,89 @@ function App() {
           <div className="board-size-form">
             <label>🚩Table size (EX. 3 = 3x3):</label>
             <div className="board-size-control">
-              <button onClick={() => setBoardSize(prev => Math.max(3, prev - 1))}>➖</button>
+              <button
+                onClick={() => setBoardSize((prev) => Math.max(3, prev - 1))}
+              >
+                ➖
+              </button>
               <input
                 type="number"
                 className="board-size-display"
                 value={boardSize}
                 onChange={(e) => setBoardSize(Number(e.target.value))}
                 min="3"
-                max="100"
+                max="19"
               />
-              <button onClick={() => setBoardSize(prev => prev + 1)}>➕</button>
+              <button onClick={() => setBoardSize((prev) => prev + 1)}>
+                ➕
+              </button>
             </div>
             <div className="choice">
-              <button onClick={() => { setPlayWithBot(false); StartGame(); }}>Play with friend😁</button>
-              <button onClick={() => { setPlayWithBot(true); StartGame(); }}>Play with bot🤖</button>
+              <button
+                onClick={() => {
+                  setPlayWithBot(false);
+                  StartGame();
+                }}
+              >
+                Play with friend😁
+              </button>
+              <button
+                onClick={() => {
+                  setPlayWithBot(true);
+                  StartGame();
+                }}
+              >
+                Play with bot🤖
+              </button>
             </div>
           </div>
         )}
 
         {gameStarted && (
           <>
-            <Board board={board} onCellClick={CellClick} size={parseInt(boardSize)} />
-            <button id="reset" onClick={() => {
-              saveGameToDatabase(moves, winner || "Cancelled");
-              setGameStarted(false);
-              setBoard([]); setMoves([]); setWinner(null);
-            }}>🔃Reset Game</button>
+            <Board
+              board={board}
+              onCellClick={CellClick}
+              size={parseInt(boardSize)}
+            />
+            <button
+              id="reset"
+              onClick={() => {
+                saveGameToDatabase(moves, winner || "Cancelled");
+                setGameStarted(false);
+                setBoard([]);
+                setMoves([]);
+                setWinner(null);
+              }}
+            >
+              🔃Reset Game
+            </button>
           </>
         )}
 
-        {winner && (
-          <h3>
-            🚩Winner: {winner === "Draw" ? "Draw" : winner}
-          </h3>
-        )}
+        {winner && <h3>🚩Winner: {winner === "Draw" ? "Draw" : winner}</h3>}
 
         {showHistory && (
           <div className="history-list">
             <h2>🕓History</h2>
             <ul>
               {[...gameHistory]
-                .sort((a, b) => new Date(b.timeFinished) - new Date(a.timeFinished))
+                .sort(
+                  (a, b) => new Date(b.timeFinished) - new Date(a.timeFinished)
+                )
                 .slice(0, 5)
                 .map((game) => (
                   <li key={game._id}>
-                    🏁Size: {game.boardSize}x{game.boardSize} | walked {game.moves.length} times<br />
-                    🚩Winner: {game.winner}<br />
-                    🕓Time: {new Date(game.timeFinished).toLocaleString()}<br />
+                    🏁Size: {game.boardSize}x{game.boardSize} | walked{" "}
+                    {game.moves.length} times
+                    <br />
+                    🚩Winner: {game.winner}
+                    <br />
+                    🕓Time: {new Date(game.timeFinished).toLocaleString()}
+                    <br />
                     <Link to={`/replay/${game._id}`}>▶️ Replay</Link>
                   </li>
-              ))}
+                ))}
             </ul>
           </div>
         )}
